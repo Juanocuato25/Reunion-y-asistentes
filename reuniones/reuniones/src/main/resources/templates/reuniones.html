@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Reuniones | Listado</title>
+</head>
+<body>
+    <h1>Listado de reuniones</h1>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Asunto</th>
+            <th>Fecha</th>
+            <th>Asistentes</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Iterar sobre la lista de reuniones -->
+        <tr th:each="reunion : ${reuniones}">
+            <td th:text="${reunion.id}"></td>
+            <td th:text="${reunion.asunto}"></td>
+            <td th:text="${reunion.fecha}"></td>
+            <td>
+                <ul>
+                    <li th:each="persona : ${reunion.asistentes}" th:text="${persona.nombre}" ></li>
+                </ul>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <form method="post" th:action="@{/logout}">
+        <button type="submit"> Log out </button>
+    </form>
+</body>
+</html>
